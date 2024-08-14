@@ -10,8 +10,23 @@ app.get('/.netlify/functions/server', (req, res) => {
 });
 
 
-app.get('/generate-pdf', (req, res) => {
-  res.send('generate-pdf, Hello, World!');
+app.post('/generate-pdf', (req, res) => {
+  const { htmlContent } = req.body;
+
+  try {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(htmlContent);
+    
+    const pdfBuffer = await page.pdf({ format: 'A4' });
+    await browser.close();
+
+    res.set('Content-Type', 'application/pdf');
+    res.send(pdfBuffer);
+  } catch (error) {
+    res.status(500).send('Error generating PDF');
+  }
+  
 });
 
 module.exports.handler = serverless(app);
