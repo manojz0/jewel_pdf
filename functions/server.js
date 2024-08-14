@@ -18,17 +18,17 @@ app.post('/generate-pdf', async (req, res) => {
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
-
     const page = await browser.newPage();
-    await page.setContent(htmlContent);
-    
+    await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
+
     const pdfBuffer = await page.pdf({ format: 'A4' });
     await browser.close();
 
     res.set('Content-Type', 'application/pdf');
     res.send(pdfBuffer);
   } catch (error) {
-    res.status(500).send(error);
+    console.error('Error generating PDF:', error);
+    res.status(500).send(`Error generating PDF: ${error.message}`);
   }
 });
 
