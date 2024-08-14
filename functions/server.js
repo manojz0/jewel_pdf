@@ -10,7 +10,7 @@ app.get('/.netlify/functions/server', (req, res) => {
 });
 
 
-app.post('/generate-pdf', (req, res) => {
+app.post('/generate-pdf', async (req, res) => {
   const { htmlContent } = req.body;
 
   try {
@@ -26,7 +26,6 @@ app.post('/generate-pdf', (req, res) => {
   } catch (error) {
     res.status(500).send('Error generating PDF');
   }
-  
 });
 
 module.exports.handler = serverless(app);
