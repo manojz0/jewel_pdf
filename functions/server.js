@@ -5,6 +5,8 @@ const puppeteer = require('puppeteer');
 
 const app = express();
 
+const chromiumPath = path.join(__dirname, 'chromium', 'chromium'); // Adjust path as needed
+
 app.get('/.netlify/functions/server', (req, res) => {
   res.send('Hello, World!');
 });
@@ -16,6 +18,7 @@ app.post('/generate-pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       headless: true,
+      executablePath: chromiumPath,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
