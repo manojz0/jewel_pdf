@@ -24,7 +24,7 @@ app.post('/generate-pdf', async (req, res) => {
     res.set('Content-Type', 'application/pdf');
     res.send(pdfBuffer);
   } catch (error) {
-    res.status(500).send('Error generating PDF');
+    res.status(500).send(error);
   }
 });
 
