@@ -2,10 +2,10 @@ const express = require('express');
 const serverless = require('serverless-http');
 
 const puppeteer = require('puppeteer');
+const chromium = require('chrome-aws-lambda'); 
 
 const app = express();
 
-const chromiumPath = path.join(__dirname, 'chromium', 'chromium'); // Adjust path as needed
 
 app.get('/.netlify/functions/server', (req, res) => {
   res.send('Hello, World!');
@@ -17,10 +17,11 @@ app.post('/generate-pdf', async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      headless: true,
-      executablePath: chromiumPath,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: chromium.args,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
     });
+    
     const page = await browser.newPage();
     await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
 
