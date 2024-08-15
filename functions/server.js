@@ -16,12 +16,10 @@ app.post('/generate-pdf', async (req, res) => {
   const { htmlContent } = req.body;
 
   try {
-    const browser = await chromium.puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
+    const browser = await puppeteer.launch({
+      args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
       executablePath: await chromium.executablePath,
       headless: chromium.headless,
-      ignoreHTTPSErrors: true,
     });
     
     const page = await browser.newPage();
