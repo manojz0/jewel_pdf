@@ -17,7 +17,7 @@ app.get('/find-chromium-path', async (req, res) => {
     const executablePath = await chromium.executablePath();
     res.json({ path: executablePath });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message, ss: process.env.CHROME_PATH });
   }
 });
 
