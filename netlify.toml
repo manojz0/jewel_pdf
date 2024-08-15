@@ -1,5 +1,7 @@
 [build]
-functions = "functions"
+  functions = "functions"
+  command = "npx puppeteer browsers install chrome"
+  publish = "public"
 
 [[redirects]]
 from = "/*"
