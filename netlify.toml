@@ -1,6 +1,6 @@
 [build]
   functions = "functions"
-  command = "npx puppeteer browsers install chrome && sudo apt-get install chromium-browser"
+  command = "npx puppeteer browsers install chrome"
 
 [[redirects]]
 from = "/*"
