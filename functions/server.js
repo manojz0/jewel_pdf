@@ -11,6 +11,7 @@ const app = express();
 
 
 app.get('/.netlify/functions/server', (req, res) => {
+  console.log(chromium,' chromium')
   res.send(chromium);
 });
 
