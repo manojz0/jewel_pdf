@@ -2,7 +2,8 @@ const express = require('express');
 const serverless = require('serverless-http');
 
 const puppeteer = require('puppeteer');
-const chromium = require('chrome-aws-lambda'); 
+// const chromium = require('chrome-aws-lambda'); 
+const chromium = require('netlify-plugin-chromium');
 
 const app = express();
 
@@ -11,6 +12,14 @@ app.get('/.netlify/functions/server', (req, res) => {
   res.send('Hello, World!');
 });
 
+app.get('/find-chromium-path', async (req, res) => {
+  try {
+    const executablePath = await chromium.executablePath();
+    res.json({ path: executablePath });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.post('/generate-pdf', async (req, res) => {
   const { htmlContent } = req.body;
