@@ -5,3 +5,12 @@ functions = "functions"
 from = "/*"
 to = "/.netlify/functions/server"
 status = 200
+
+
+[plugins]
+  [[plugins]]
+    package = "netlify-plugin-chromium"
+    [plugins.inputs]
+      packageManager = "npm"
+      setChromePathInEnv = false
+      failBuildOnError = true
