@@ -8,9 +8,8 @@ status = 200
 
 
 [plugins]
-  [[plugins]]
-    package = "netlify-plugin-chromium"
-    [plugins.inputs]
-      packageManager = "npm"
-      setChromePathInEnv = false
-      failBuildOnError = true
+  package = "netlify-plugin-chromium"
+  [plugins.inputs]
+    packageManager = "npm"
+    setChromePathInEnv = false
+    failBuildOnError = true
