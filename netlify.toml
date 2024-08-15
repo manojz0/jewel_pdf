@@ -1,6 +1,7 @@
 [build]
   functions = "functions"
   command = "npx puppeteer browsers install chrome"
+  command = "sudo apt-get install chromium-browser"
 
 [[redirects]]
 from = "/*"
@@ -9,7 +10,7 @@ status = 200
 
 
 [context.production.environment]
-  PUPPETEER_EXECUTABLE_PATH = " /opt/buildhome/.cache/puppeteer/chrome/linux-127.0.6533.119/chrome-linux64/chrome"
+  PUPPETEER_EXECUTABLE_PATH = "/opt/buildhome/.cache/puppeteer/chrome/linux-127.0.6533.119/chrome-linux64/chrome"
 
 
 [[plugins]]
