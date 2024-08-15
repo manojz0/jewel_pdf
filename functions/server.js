@@ -16,7 +16,7 @@ app.get('/.netlify/functions/server', (req, res) => {
 
 app.get('/find-chromium-path', async (req, res) => {
   try {
-    const executablePath = await chromium.executablePath();
+    const executablePath = await chromium.getChromiumPath();
     res.json({ path: executablePath });
   } catch (error) {
     res.status(500).json({ error: error.message });
