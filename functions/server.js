@@ -30,7 +30,8 @@ app.post('/generate-pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       executablePath: '/opt/build/repo/node_modules/chromium/lib/chromium/chrome-linux/chrome',
-      headless: 'new'
+       headless: 'shell',
+       args: ['--enable-gpu'],
     });
 
     const page = await browser.newPage();
