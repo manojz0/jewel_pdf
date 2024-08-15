@@ -3,7 +3,9 @@ const serverless = require('serverless-http');
 
 const puppeteer = require('puppeteer');
 // const chromium = require('chrome-aws-lambda'); 
-const chromium = require('netlify-plugin-chromium');
+// const chromium = require('netlify-plugin-chromium');
+
+const chromium = require('chromium');
 
 const app = express();
 
@@ -26,7 +28,7 @@ app.post('/generate-pdf', async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      executablePath: '/opt/build/repo/node_modules/chromium/lib/chromium/chrome-linux/chrome',
+      executablePath: chromium.path,
       headless: 'new'
     });
 
