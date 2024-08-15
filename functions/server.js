@@ -26,7 +26,7 @@ app.post('/generate-pdf', async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      executablePath: '/usr/bin/chromium-browser',
+      executablePath: '/opt/build/repo/node_modules/chromium/lib/chromium/chrome-linux/chrome',
       headless: 'new'
     });
 
